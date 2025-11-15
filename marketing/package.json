@@ -1,0 +1,16 @@
+{
+  "name": "blitztrade-marketing",
+  "version": "1.0.0",
+  "description": "BlitzTrade Arena marketing website",
+  "scripts": {
+    "start": "npx serve -s . -l 3000"
+  },
+  "keywords": [
+    "stock",
+    "trading",
+    "game",
+    "multiplayer"
+  ],
+  "author": "",
+  "license": "ISC"
+}

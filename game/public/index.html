@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stockpocalypse - Survive the Market Mayhem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing Screen -->
+    <div id="landingScreen" class="screen active">
+        <div class="logo-container">
+            <h1 class="logo-main gradient-logo">STOCKPOCALYPSE</h1>
+            <h2 class="logo-sub">Survive the Stockpocalypse</h2>
+        </div>
+        <div class="landing-content">
+            <p class="tagline">Survive the Stockpocalypse</p>
+            
+            <div id="playersWaitingIndicator" class="players-waiting">
+                <span class="waiting-icon">👥</span>
+                <span id="waitingCount">0</span> players waiting to play
+            </div>
+            
+            <input type="text" id="playerNameInput" placeholder="Enter your name" maxlength="20">
+            
+            <div class="mode-selection">
+                <h3>Choose Your Mode:</h3>
+                <div class="mode-buttons">
+                    <button id="blitzModeBtn" class="mode-btn" data-mode="blitz">
+                        <span class="mode-icon">⚡</span>
+                        <span class="mode-name">BLITZ</span>
+                        <span class="mode-time">2 Minutes</span>
+                    </button>
+                    <button id="standardModeBtn" class="mode-btn" data-mode="standard">
+                        <span class="mode-icon">📈</span>
+                        <span class="mode-name">STANDARD</span>
+                        <span class="mode-time">5 Minutes</span>
+                    </button>
+                </div>
+            </div>
+            
+            <button id="joinGameBtn" class="btn-primary">MULTIPLAYER</button>
+            <button id="singlePlayerBtn" class="btn-secondary">SINGLE PLAYER (vs Bots)</button>
+        </div>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobbyScreen" class="screen">
+        <div class="lobby-container">
+            <h2>Waiting for Players...</h2>
+            <div id="lobbyStatus"></div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdownScreen" class="screen">
+        <div class="countdown-container">
+            <h2>Get Ready!</h2>
+            <div id="countdownNumber" class="countdown-number">3</div>
+            <div id="playersList" class="players-list"></div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <!-- Header with Branding -->
+        <div class="game-header">
+            <div class="header-top">
+                <div class="game-branding">
+                    <h1>STOCKPOCALYPSE</h1>
+                    <span class="branding-sub">SURVIVE</span>
+                </div>
+                <div class="timer-container">
+                    <div id="gameTimer" class="timer">2:00</div>
+                </div>
+            </div>
+            <div class="player-stats">
+                <div class="stat">
+                    <span class="stat-label">Cash:</span>
+                    <span id="playerCash" class="stat-value">$10,000</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Portfolio:</span>
+                    <span id="playerPortfolio" class="stat-value">$10,000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Ticker -->
+        <div id="newsTicker" class="news-ticker" style="display: none;">
+            <div class="news-content">
+                <span class="news-icon">📰</span>
+                <span id="newsText"></span>
+            </div>
+        </div>
+
+        <!-- Holdings (moved to top) -->
+        <div class="holdings-container">
+            <h3>Your Holdings</h3>
+            <div id="holdingsList">No holdings yet</div>
+        </div>
+
+        <!-- Power-ups -->
+        <div class="powerups-container">
+            <button id="insiderInfoBtn" class="powerup-btn" onclick="usePowerup('insiderInfo')">
+                🔮 Insider Info
+            </button>
+            <button id="priceFreezeBtn" class="powerup-btn powerup-needs-target" onclick="usePowerup('priceFreeze')" disabled>
+                ❄️ Freeze Price
+            </button>
+            <button id="marketPumpBtn" class="powerup-btn powerup-needs-target" onclick="usePowerup('marketManipulation')" disabled>
+                🚀 Market Pump
+            </button>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <h3>Live Rankings</h3>
+            <div id="leaderboardList"></div>
+        </div>
+
+        <!-- Stocks -->
+        <div class="stocks-container" id="stocksContainer">
+            <!-- Stock cards will be generated here -->
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="screen">
+        <div class="gameover-container">
+            <h1>GAME OVER</h1>
+            <div id="finalLeaderboard" class="final-leaderboard"></div>
+            <button id="playAgainBtn" class="btn-primary">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
